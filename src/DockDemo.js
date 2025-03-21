@@ -54,8 +54,8 @@ const TabDemo = () => {
 
 	return (
 		<DndProvider backend={HTML5Backend}>
-			<Box display="flex"  alignItems="center" bgcolor="#f5f5f5">
-				<Paper elevation={4} sx={{ padding: 2, width: '90%', height: '90%', maxWidth: 500, maxHeight: 800 }}>
+			<Box display="flex" alignItems="center" bgcolor="#f5f5f5">
+				<Paper elevation={-40} sx={{ padding: 2, width: '90%', height: '90%', maxWidth: 500, maxHeight: 800 }}>
 					<Typography variant="h6" gutterBottom>
 						Tab Manager
 					</Typography>
@@ -71,26 +71,40 @@ const TabDemo = () => {
 
 				{/* <Dock position="bottom" isVisible={isDockVisible} fluid size={0.4}> */}
 				<Box p={2} bgcolor="#f5f5f5" height="100%" overflow="auto">
-					<Tabs
-						value={activeTab}
-						onChange={handleTabChange}
-						variant="scrollable"
-						scrollButtons="auto"
-						allowScrollButtonsMobile
-						sx={{ minHeight: 32 }}
-					>
-						{tabs.map((tab, index) => (
-							<Tab
-								key={tab.id}
-								label={<DraggableTab tab={tab} index={index} moveTab={moveTab} closeTab={closeTab} />}
-								value={tab.id}
-								sx={{ minWidth: 100, padding: 0.5 }}
-							/>
-						))}
-					</Tabs>
-					<Box mt={2} p={2} bgcolor="#fff" borderRadius={1} boxShadow={1} height="calc(100% - 100px)" overflow="auto">
-						<Typography variant="body1">{activeTabContent}</Typography>
-					</Box>
+					<Paper elevation={-40} sx={{ padding: 2, width: '90%', height: '90%', maxWidth: 500, maxHeight: 800 }}>
+						<Box p={2} bgcolor="#f5f5f5" height="100%">
+							<Box p={2} bgcolor="#f5f5f5" height="100%" display="flex" justifyContent="flex-end" >
+								<IconButton color="error" onClick={closeAllTabs}>
+									<CloseIcon />
+								</IconButton>
+							</Box>
+							<Tabs
+								value={activeTab}
+								onChange={handleTabChange}
+								variant="scrollable"
+								scrollButtons="auto"
+								allowScrollButtonsMobile
+								sx={{ minHeight: 32 }}
+							>
+								{tabs.map((tab, index) => (
+									<Tab
+										key={tab.id}
+										label={<DraggableTab tab={tab} index={index} moveTab={moveTab} closeTab={closeTab} />}
+										value={tab.id}
+										sx={{ minWidth: 100, padding: 0.5 }}
+									/>
+								))}
+
+							</Tabs>
+
+							<Box mt={2} p={2} bgcolor="#fff" borderRadius={1} boxShadow={1} height="calc(100% - 100px)" overflow="auto">
+								<Typography variant="body1">{activeTabContent}</Typography>
+							</Box>
+
+
+
+						</Box>
+					</Paper>
 				</Box>
 				{/* </Dock> */}
 			</Box>
